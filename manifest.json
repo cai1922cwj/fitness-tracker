@@ -2,7 +2,7 @@
     "name": "运动健康记录",
     "short_name": "运动记录",
     "description": "个人运动健康状态记录APP",
-    "start_url": "/",
+    "start_url": ".",
     "display": "standalone",
     "background_color": "#f5f5f5",
     "theme_color": "#4CAF50",
