@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>运动健康记录</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon-192x192.png">
+</head>
+<body>
+    <!-- 主容器 -->
+    <div id="app">
+        <!-- 头部 -->
+        <header class="header">
+            <h1>🏃‍♂️ 运动健康</h1>
+            <p class="date" id="currentDate"></p>
+        </header>
+
+        <!-- 今日概览卡片 -->
+        <section class="today-summary">
+            <div class="summary-card">
+                <div class="summary-item">
+                    <span class="icon">📏</span>
+                    <div class="data">
+                        <span class="value" id="todayDistance">0.00</span>
+                        <span class="unit">公里</span>
+                    </div>
+                    <span class="label">今日距离</span>
+                </div>
+                <div class="summary-item">
+                    <span class="icon">🔥</span>
+                    <div class="data">
+                        <span class="value" id="todayCalories">0</span>
+                        <span class="unit">千卡</span>
+                    </div>
+                    <span class="label">今日热量</span>
+                </div>
+                <div class="summary-item">
+                    <span class="icon">⏱️</span>
+                    <div class="data">
+                        <span class="value" id="todayDuration">00:00</span>
+                        <span class="unit"></span>
+                    </div>
+                    <span class="label">今日时长</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 运动类型选择 -->
+        <section class="sport-types">
+            <h2>选择运动类型</h2>
+            <div class="type-grid">
+                <button class="type-btn active" data-type="running">
+                    <span class="type-icon">🏃</span>
+                    <span class="type-name">跑步</span>
+                </button>
+                <button class="type-btn" data-type="walking">
+                    <span class="type-icon">🚶</span>
+                    <span class="type-name">快走</span>
+                </button>
+                <button class="type-btn" data-type="cycling">
+                    <span class="type-icon">🚴</span>
+                    <span class="type-name">自行车</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- 运动记录表单 -->
+        <section class="record-section">
+            <h2>记录运动</h2>
+            <form id="recordForm" class="record-form">
+                <div class="form-group">
+                    <label>距离 (公里)</label>
+                    <input type="number" id="distance" step="0.01" min="0" placeholder="0.00" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>时长 (分钟)</label>
+                        <input type="number" id="duration" min="1" placeholder="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label>平均心率 (次/分)</label>
+                        <input type="number" id="heartRate" min="40" max="220" placeholder="可选">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>备注</label>
+                    <input type="text" id="notes" placeholder="可选：记录运动感受">
+                </div>
+                <button type="submit" class="btn-primary">
+                    <span class="btn-icon">✓</span>
+                    保存记录
+                </button>
+            </form>
+        </section>
+
+        <!-- 快速计时器 -->
+        <section class="timer-section">
+            <h2>运动计时</h2>
+            <div class="timer-display">
+                <span id="timer">00:00:00</span>
+            </div>
+            <div class="timer-controls">
+                <button id="startTimer" class="btn-timer start">▶ 开始</button>
+                <button id="pauseTimer" class="btn-timer pause" disabled>⏸ 暂停</button>
+                <button id="resetTimer" class="btn-timer reset">↺ 重置</button>
+            </div>
+        </section>
+
+        <!-- 历史记录 -->
+        <section class="history-section">
+            <div class="section-header">
+                <h2>历史记录</h2>
+                <select id="filterType">
+                    <option value="all">全部</option>
+                    <option value="running">跑步</option>
+                    <option value="walking">快走</option>
+                    <option value="cycling">自行车</option>
+                </select>
+            </div>
+            <div id="recordsList" class="records-list">
+                <!-- 记录将动态插入这里 -->
+            </div>
+        </section>
+
+        <!-- 统计图表 -->
+        <section class="chart-section">
+            <h2>本周统计</h2>
+            <div class="chart-tabs">
+                <button class="chart-tab active" data-chart="distance">距离</button>
+                <button class="chart-tab" data-chart="calories">热量</button>
+                <button class="chart-tab" data-chart="duration">时长</button>
+            </div>
+            <div class="chart-container">
+                <canvas id="weeklyChart"></canvas>
+            </div>
+        </section>
+
+        <!-- 底部导航 -->
+        <nav class="bottom-nav">
+            <button class="nav-btn active" data-page="home">
+                <span class="nav-icon">🏠</span>
+                <span class="nav-label">首页</span>
+            </button>
+            <button class="nav-btn" data-page="stats">
+                <span class="nav-icon">📊</span>
+                <span class="nav-label">统计</span>
+            </button>
+            <button class="nav-btn" data-page="settings">
+                <span class="nav-icon">⚙️</span>
+                <span class="nav-label">设置</span>
+            </button>
+        </nav>
+    </div>
+
+    <!-- 统计页面 -->
+    <div id="statsPage" class="page hidden">
+        <header class="header">
+            <h1>📊 运动统计</h1>
+        </header>
+        <section class="stats-overview">
+            <div class="stat-card">
+                <h3>本周运动</h3>
+                <div class="stat-value" id="weekCount">0 次</div>
+            </div>
+            <div class="stat-card">
+                <h3>本月运动</h3>
+                <div class="stat-value" id="monthCount">0 次</div>
+            </div>
+            <div class="stat-card">
+                <h3>总运动次数</h3>
+                <div class="stat-value" id="totalCount">0 次</div>
+            </div>
+        </section>
+        <section class="stats-detail">
+            <h2>运动类型分布</h2>
+            <div id="typeDistribution" class="distribution-chart">
+                <!-- 动态生成 -->
+            </div>
+        </section>
+        <button class="btn-back" onclick="showPage('home')">← 返回首页</button>
+    </div>
+
+    <!-- 设置页面 -->
+    <div id="settingsPage" class="page hidden">
+        <header class="header">
+            <h1>⚙️ 设置</h1>
+        </header>
+        <section class="settings-section">
+            <div class="setting-item">
+                <label>体重 (kg)</label>
+                <input type="number" id="userWeight" value="70" min="30" max="200">
+            </div>
+            <div class="setting-item">
+                <label>年龄</label>
+                <input type="number" id="userAge" value="30" min="10" max="100">
+            </div>
+            <div class="setting-item">
+                <label>性别</label>
+                <select id="userGender">
+                    <option value="male">男</option>
+                    <option value="female">女</option>
+                </select>
+            </div>
+            <button class="btn-primary" onclick="saveSettings()">保存设置</button>
+            <button class="btn-danger" onclick="clearAllData()">清除所有数据</button>
+        </section>
+        <button class="btn-back" onclick="showPage('home')">← 返回首页</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
