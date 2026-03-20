@@ -9,14 +9,17 @@
     --primary-color: #4CAF50;
     --primary-dark: #388E3C;
     --secondary-color: #FF9800;
-    --bg-color: #f5f5f5;
+    --bg-color: #f9f9f9;
     --card-bg: #ffffff;
-    --text-primary: #333333;
-    --text-secondary: #666666;
-    --border-color: #e0e0e0;
-    --running-color: #FF5722;
-    --walking-color: #2196F3;
-    --cycling-color: #9C27B0;
+    --text-primary: #2c3e50;
+    --text-secondary: #7f8c8d;
+    --border-color: #ecf0f1;
+    --running-color: #e74c3c;
+    --walking-color: #3498db;
+    --cycling-color: #9b59b6;
+    --strength-color: #e67e22;
+    --housework-color: #2ecc71;
+    --yoga-color: #8e44ad;
 }
 
 body {
@@ -149,6 +152,21 @@ body {
 .type-btn[data-type="cycling"].active {
     border-color: var(--cycling-color);
     background: rgba(156, 39, 176, 0.1);
+}
+
+.type-btn[data-type="strength"].active {
+    border-color: var(--strength-color);
+    background: rgba(230, 126, 34, 0.1);
+}
+
+.type-btn[data-type="housework"].active {
+    border-color: var(--housework-color);
+    background: rgba(46, 204, 113, 0.1);
+}
+
+.type-btn[data-type="yoga"].active {
+    border-color: var(--yoga-color);
+    background: rgba(142, 68, 173, 0.1);
 }
 
 .type-icon {
@@ -342,6 +360,18 @@ body {
 
 .record-icon.cycling {
     background: rgba(156, 39, 176, 0.15);
+}
+
+.record-icon.strength {
+    background: rgba(230, 126, 34, 0.15);
+}
+
+.record-icon.housework {
+    background: rgba(46, 204, 113, 0.15);
+}
+
+.record-icon.yoga {
+    background: rgba(142, 68, 173, 0.15);
 }
 
 .record-details h4 {
@@ -621,4 +651,563 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
     background: var(--text-secondary);
+}
+
+/* 用户管理样式 */
+.user-info {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.user-info h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: var(--text-primary);
+}
+
+.current-user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 16px;
+}
+
+.user-management {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.user-management h3 {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: var(--text-primary);
+}
+
+.users-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.user-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background: var(--bg-color);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.user-item.current {
+    background: rgba(76, 175, 80, 0.1);
+    border-color: var(--primary-color);
+}
+
+.user-info-text {
+    flex: 1;
+}
+
+.user-name {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.user-details {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.user-actions {
+    display: flex;
+    gap: 5px;
+}
+
+.user-action-btn {
+    background: none;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 4px 8px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.user-action-btn.primary {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.add-user-form {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 15px;
+    border: 2px solid var(--primary-color);
+}
+
+.add-user-form.hidden {
+    display: none;
+}
+
+.btn-secondary {
+    width: 100%;
+    padding: 12px;
+    background: var(--border-color);
+    color: var(--text-primary);
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.personal-settings {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.personal-settings h3 {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: var(--text-primary);
+}
+
+/* 目标管理样式 */
+.goal-settings {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 15px;
+}
+
+.goal-settings h3 {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: var(--text-primary);
+}
+
+.goals-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.goal-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: var(--bg-color);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.goal-info-text {
+    flex: 1;
+}
+
+.goal-title {
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.goal-target {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 5px;
+}
+
+.goal-progress-text {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+
+.goal-progress-bar {
+    height: 8px;
+    background: var(--border-color);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.goal-progress-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+.goal-action-btn {
+    background: none;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 12px;
+    cursor: pointer;
+    color: #f44336;
+    border-color: #f44336;
+    margin-left: 10px;
+}
+
+.goal-action-btn:hover {
+    background: #f44336;
+    color: white;
+}
+
+.add-goal-form {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 15px;
+    border: 2px solid var(--primary-color);
+}
+
+.add-goal-form.hidden {
+    display: none;
+}
+
+.add-goal-form h4 {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: var(--text-primary);
+}
+
+/* 地图页面样式 */
+.map-section {
+    padding: 15px;
+    padding-bottom: 80px;
+}
+
+.map-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.map-controls .btn-primary,
+.map-controls .btn-secondary {
+    flex: 1;
+    min-width: 120px;
+    padding: 12px;
+    font-size: 14px;
+}
+
+.map-container {
+    width: 100%;
+    height: 300px;
+    background: #f0f0f0;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid var(--border-color);
+    margin-bottom: 15px;
+}
+
+.track-info {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.track-info p {
+    margin-bottom: 8px;
+}
+
+.track-info span {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.saved-tracks {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 15px;
+}
+
+.saved-tracks h3 {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: var(--text-primary);
+}
+
+.tracks-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.track-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background: var(--bg-color);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.track-info-text {
+    flex: 1;
+}
+
+.track-name {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.track-details {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.track-actions {
+    display: flex;
+    gap: 5px;
+}
+
+.track-action-btn {
+    background: none;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 4px 8px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.track-action-btn.primary {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+/* Leaflet地图覆盖样式 */
+.leaflet-container {
+    font-family: inherit;
+}
+
+.leaflet-control-zoom {
+    border: none !important;
+    border-radius: 8px !important;
+    overflow: hidden;
+}
+
+.leaflet-control-zoom a {
+    border-radius: 0 !important;
+    background: var(--card-bg) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--border-color) !important;
+}
+
+/* 统计页面扩展样式 */
+.goal-progress-section,
+.user-comparison-section {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 20px;
+    margin-top: 15px;
+}
+
+.goal-progress-section h2,
+.user-comparison-section h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: var(--text-primary);
+}
+
+.goal-progress-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.goal-progress-item {
+    background: var(--bg-color);
+    border-radius: 12px;
+    padding: 15px;
+    border: 1px solid var(--border-color);
+}
+
+.goal-progress-item.completed {
+    border-color: var(--primary-color);
+    background: rgba(76, 175, 80, 0.05);
+}
+
+.goal-progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.goal-progress-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.goal-type-badge {
+    background: var(--primary-color);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 12px;
+}
+
+.completed-badge {
+    background: var(--primary-color);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 12px;
+    margin-left: 8px;
+}
+
+.goal-progress-target {
+    font-size: 14px;
+    color: var(--text-primary);
+    font-weight: bold;
+}
+
+.goal-progress-details {
+    margin-top: 10px;
+}
+
+.goal-progress-text {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.goal-progress-percent {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.user-comparison-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.comparison-summary {
+    background: var(--bg-color);
+    border-radius: 12px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.comparison-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.comparison-item:last-child {
+    border-bottom: none;
+}
+
+.comparison-label {
+    font-size: 14px;
+    color: var(--text-primary);
+}
+
+.comparison-value {
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.user-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+}
+
+.user-stat-card {
+    background: var(--bg-color);
+    border-radius: 12px;
+    padding: 15px;
+    border: 1px solid var(--border-color);
+}
+
+.user-stat-card.current-user {
+    border-color: var(--primary-color);
+    background: rgba(76, 175, 80, 0.05);
+}
+
+.user-stat-header {
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.user-stat-name {
+    font-weight: bold;
+    font-size: 14px;
+    color: var(--text-primary);
+}
+
+.user-stat-body {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.user-stat-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.stat-label {
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.stat-value {
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--text-primary);
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .user-stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .goal-progress-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .goal-progress-target {
+        align-self: flex-end;
+    }
 }
